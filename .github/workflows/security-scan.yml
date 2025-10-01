@@ -1,0 +1,34 @@
+name: Block Intrusive Commands
+on:
+  push:
+    branches:
+      - main # Adjust this to your main branch name
+  pull_request:
+    branches:
+      - main # Adjust this to your main branch name
+
+permissions:
+  contents: read
+
+jobs:
+  scan-code:
+    name: Scan Code for Intrusive Commands
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch all commits
+
+      - name: Scan for Intrusive Commands
+        run: |
+          BLOCKED_PATTERNS="sudo|rm -rf /|curl .*\| *bash|wget .*\| *bash|eval\("
+          echo "Scanning for blocked patterns: ${BLOCKED_PATTERNS}"
+          SEARCH_RESULTS=$(grep -riE --exclude-dir={.git,.github} "${BLOCKED_PATTERNS}" . || true)
+          if [[ -n "${SEARCH_RESULTS}" ]]; then
+            echo "Intrusive commands found in the following files:"
+            echo "${SEARCH_RESULTS}"
+            exit 1
+          else
+            echo "No intrusive commands found."
+          fi
