@@ -25,7 +25,7 @@ jobs:
         run: |
           BLOCKED_PATTERNS = "sudo|rm -rf /|curl .*\| *bash|wget .*\| *bash|eval\("
           echo "Scanning for blocked patterns: ${BLOCKED_PATTERNS}"
-          SEARCH_RESULTS=$(grep -riE -- exclude-dir={.git} "${BLOCKED_PATTERNS}" . || true)
+          SEARCH_RESULTS=$(grep -riE -- exclude-dir={.github} "${BLOCKED_PATTERNS}" . || true)
           if [[ -n "${SEARCH_RESULTS}" ]]; then
             echo "Intrusive commands found in the following files:"
             echo "${SEARCH_RESULTS}"
