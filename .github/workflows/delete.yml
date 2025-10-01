@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1 # fetch all commits
+          fetch-depth: 0 # fetch all commits
 
       - name: Check for intrusive commands in commit messages
         run: |
