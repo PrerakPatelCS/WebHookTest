@@ -80,5 +80,6 @@ Test Again
 
 3rd test.
 
-Test out a commit named intrusive.
-THis should be blocked.
+This is a test from the Test Branch
+we will be having a commit message with "intrusive"
+This should be blocked.
