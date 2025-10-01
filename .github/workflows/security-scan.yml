@@ -16,12 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch all commits
 
       - name: Scan for Intrusive Commands
         run: |
-          BLOCKED_PATTERNS = "sudo|rm -rf /|curl .*\| *bash|wget .*\| *bash|eval\("
+          BLOCKED_PATTERNS="sudo|rm -rf /|curl .*\| *bash|wget .*\| *bash|eval\("
           echo "Scanning for blocked patterns: ${BLOCKED_PATTERNS}"
           SEARCH_RESULTS=$(grep -riE -- exclude-dir={.github} "${BLOCKED_PATTERNS}" . || true)
           if [[ -n "${SEARCH_RESULTS}" ]]; then
