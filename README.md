@@ -55,6 +55,14 @@ Require status checks to pass before merging.
 Add the validate commit messages job to the list of required status checks.
 This stops any pull request or direct push to the branch if the validation workflow fails.
 
+Push the .github/workflows and the workflow will show up on github actions tab.
+Make the ruleset and add the workflow action.
+It will be a Github Action and it will have the name of the commit.
+When it fails, you can check the result in the actions tab.
+
+
+
+
 ## Commit hooks (Client Side)
 
 These run on the developers local machine.
