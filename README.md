@@ -77,3 +77,5 @@ Make the script executable with chmod +x .git/hooks/commit-msg.
 intrusive
 
 Test Again
+
+3rd test.
