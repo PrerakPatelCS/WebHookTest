@@ -1,12 +1,6 @@
 name: Block Intrusive Commands
 on:
-
   push:
-    branches:
-      - main # Adjust this to your main branch name
-  pull_request:
-    branches:
-      - main # Adjust this to your main branch name
 
 permissions:
   contents: read
