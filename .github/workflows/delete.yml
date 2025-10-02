@@ -1,5 +1,5 @@
 name: Validate Commit Messages
-on: [push]
+on: push
 
 jobs:
   validate_commit_messages:
