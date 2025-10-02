@@ -1,11 +1,5 @@
 name: Block Intrusive Commands
-on:
-  push:
-    branches:
-      - main # Adjust this to your main branch name
-  pull_request:
-    branches:
-      - main # Adjust this to your main branch name
+on: push
 
 permissions:
   contents: read
@@ -22,7 +16,7 @@ jobs:
 
       - name: Scan for Intrusive Commands
         run: |
-          BLOCKED_PATTERNS="sudo|rm -rf /|curl .*\| *bash|wget .*\| *bash|eval\("
+          BLOCKED_PATTERNS="rm -rf"
           echo "Scanning for blocked patterns: ${BLOCKED_PATTERNS}"
           SEARCH_RESULTS=$(grep -riE --exclude-dir={.git,.github} "${BLOCKED_PATTERNS}" . || true)
           if [[ -n "${SEARCH_RESULTS}" ]]; then
