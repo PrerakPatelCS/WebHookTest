@@ -1,4 +1,5 @@
 # WebHookTest
+
 Test out webhooks
 
 ## What is a Webhook
@@ -70,7 +71,7 @@ Not mandatory, there is a flag to not run it.
 THe flag is git commit --no-verify
 
 These hooks are in the .git/hook/ directory.
-Make the script executable with chmod +x .git/hooks/commit-msg.
+Make the script executmble with chmod +x .git/hooks/commit-msg.
 
 # Test 
 
@@ -83,3 +84,7 @@ Test Again
 This is a test from the Test Branch
 we will be having a commit message with "intrusive"
 This should be blocked.
+
+Test this branch should trigger the workflows.
+
+Pushing to Main.
