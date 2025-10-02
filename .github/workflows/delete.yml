@@ -1,11 +1,5 @@
 name: Validate Commit Messages
-on:
-  push:
-    branches:
-      - main # Adjust this to your main branch name
-  pull_request:
-    branches:
-      - main # Adjust this to your main branch name
+on: push
 
 jobs:
   validate_commit_messages:
