@@ -12,6 +12,9 @@ Webhook operates after a push has happened.
 pre-receive hook can run custom scripts to block pushes.
 This is a server side hook, only for Github enterprise.
 
+These are server side hooks.
+These have different triggers than the client side ones.
+These are triggered on network operations so when you push a commit up to origin.
 
 # Steps
 
@@ -72,6 +75,18 @@ THe flag is git commit --no-verify
 These hooks are in the .git/hook/ directory.
 Make the script executable with chmod +x .git/hooks/commit-msg.
 
+This is part of Git, not Github, this is used to enforce rules before a commit
+or push happens.
+The actions that can trigger it are.
+git commit.
+git push.
+git merge.
+git rebase.
+and so on.
+
+
+
+
 # Test 
 
 intrusive
@@ -87,3 +102,8 @@ This should be blocked.
 # Test Security Scan
 
 rm -rf
+
+## TODO
+
+Make it repository wide.
+CHange the enforcer from the ruleset to a webhook.
