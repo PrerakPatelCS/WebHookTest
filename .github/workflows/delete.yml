@@ -1,8 +1,6 @@
 name: Validate Commit Messages
-on:
-  push:
-    branches:
-      - '**'  # triggers on all branches
+
+on: [push, pull_request]
 
 jobs:
   validate_commit_messages:
