@@ -16,7 +16,7 @@ jobs:
 
       - name: Scan for Intrusive Commands
         run: |
-          BLOCKED_PATTERNS="rm -rf"
+          BLOCKED_PATTERNS="rm -r"
           echo "Scanning for blocked patterns: ${BLOCKED_PATTERNS}"
           SEARCH_RESULTS=$(grep -riE --exclude-dir={.git,.github} "${BLOCKED_PATTERNS}" . || true)
           if [[ -n "${SEARCH_RESULTS}" ]]; then
