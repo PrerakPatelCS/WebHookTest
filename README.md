@@ -62,6 +62,11 @@ It will be a Github Action and it will have the name of the commit.
 When it fails, you can check the result in the actions tab.
 
 
+## TODO
+
+Make a configuration file.
+Only admin can touch the configuration file.
+This will stop all bad commits.
 
 
 ## Commit hooks (Client Side)
@@ -72,6 +77,17 @@ THe flag is git commit --no-verify
 
 These hooks are in the .git/hook/ directory.
 Make the script executmble with chmod +x .git/hooks/commit-msg.
+
+There are built in scripts that come when you initialize a git repository.
+Everything inside of .git is.
+All the hooks are suffixed with .sample.
+The file name is how git knows when to run the script, in what part of the lifecycle.
+The file should have no suffix.
+
+These files have #!/bin/sh which defines how to run the script.
+#!/bin/sh
+#!/usr/bin/env python.
+#!/usr/bin/perl
 
 # Test 
 
