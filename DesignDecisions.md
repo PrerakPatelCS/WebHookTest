@@ -23,14 +23,16 @@ Good for develment workflow so every commit does not have to do a check and caus
 
 Workflows run using the version of the YAML file from the commit that triggered it.
 
-
 The github workflows files are on the repo and can be manipulated by others.
 We must stop that, only the admin can do that.
 
 There are push rules which are only available in organization repos.
 
-
-
+In free version we can require an approval to merge to main.
+We can have the codereviewer approve the review defined in .github/CODEOWNERS.
+For the repo owner you can bypass this approval.
+Otherwise it would require at least 1 approver, and if you change anything in .github/ directory
+you need approval from the codeowner which we can set to the admin.
 
 ### Steps
 
