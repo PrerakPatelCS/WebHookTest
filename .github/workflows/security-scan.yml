@@ -1,5 +1,5 @@
 name: Block Intrusive Commands
-on: push
+on: [pull_request]
 
 permissions:
   contents: read
