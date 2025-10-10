@@ -34,6 +34,11 @@ For the repo owner you can bypass this approval.
 Otherwise it would require at least 1 approver, and if you change anything in .github/ directory
 you need approval from the codeowner which we can set to the admin.
 
+Another way is to use file path restrictions.
+Restrict any changes to .github/workflows.
+And have bypass rules for admins.
+This is only in organizations not what this repo is currently.
+
 ### Steps
 
 1. Disable push to protected branches.

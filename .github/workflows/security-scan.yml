@@ -16,11 +16,12 @@ jobs:
 
       - name: Scan for Intrusive Commands
         run: |
-          SEARCH_RESULTS=$(grep -riEf --exclude-dir={.git,.github} ../BLOCKED_PATTERNS . || true)
-          if [[ -n "${SEARCH_RESULTS}" ]]; then
-            echo "Intrusive commands found in the following files:"
-            echo "${SEARCH_RESULTS}"
-            exit 1
+          search_results=$(grep -ri --exclude-dir={.git,.github} --file=./.github/BLOCKED_PATTERNS.txt . || true)
+          echo "Scanning for intrusive commands"
+          if [[ -n "${search_results}" ]]; then
+              echo "intrusive commands found in the following files:"
+              echo "${search_results}"
+              exit 1
           else
-            echo "No intrusive commands found."
+              echo "no intrusive commands found."
           fi
