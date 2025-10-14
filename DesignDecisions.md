@@ -1,6 +1,6 @@
 # Goal
 
-We want to protect our main branch such that no intrusive commands can be there.
+We want to protect our main branch or all protected branches such that no intrusive commands can be there.
 We do not want the opportunity that someone can commit something intrusive.
 We will have an admin level and developer level so admin can make changes.
 
@@ -9,19 +9,21 @@ We will have an admin level and developer level so admin can make changes.
 We will have github actions workflow.
 When there is a pull request to the main branch or any protected branch
 we can stop it before coming in.
+By running this script on server side on Github's servers.
+
 For non protected branches we will let them do what they want, but if
-they want to merge with main then you have to go through a check and if you fail
+they want to merge to main then you have to go through a check and if you fail
 you are rejected.
-You can only do pull requests to protected branches.
-Disable push requests to the branch.
+Pushes directly to main or protected branches is blocked.
 The check will run on github server side.
 
 There will be a configuration file that will have all the intrusive commands you can stop.
-Only admin can change that file.
+Only admin can change that file, or we must get approval from the codeowner which will be an admin.
 
-Good for develment workflow so every commit does not have to do a check and cause friction.
+Good for development workflow so every commit does not have to do a check and cause friction.
 
 Workflows run using the version of the YAML file from the commit that triggered it.
+Which is why we do not want malicious developers to be able to change this file.
 
 The github workflows files are on the repo and can be manipulated by others.
 We must stop that, only the admin can do that.
@@ -39,10 +41,39 @@ Restrict any changes to .github/workflows.
 And have bypass rules for admins.
 This is only in organizations not what this repo is currently.
 
+There is Github Push rules, this is a new feature in Github.
+Only available in github Teams and github Enterprise users.
+Push rules would allow the admin to make a ruleset where users cannot
+edit a specific filepath.
+Only Admin should be able to edit files in the .github directory.
+
+Restricted file paths : .github/**/*
+
 ### Steps
 
-1. Disable push to protected branches.
-2. Have a github workflows
+1. Make a Github ruleset
+    a. Target branches
+        i. All protected branches.
+    b. Branch rules.
+        i. Require a pull request before merging.
+            a. Required Approvals >= 1
+        ii. Require review from codeowners.
+    c. Require status checks to pass.
+        i. + Add checks -> search for the github actions created.
+    d. Block force pushes.
+2. Have a Github Actions which will scan the files and stop all Pattern matches from the 
+Blocked_Patterns configuration file.
+    i. Optimizations possible.
+        a. Only scan the files that are changed in the commit.
+        b. Parallelize the text search of each file.
+3. CodeOwners, add .github/CODEOWNERS file and add this codeowner .github/ @[admin account] 
+4. If in Github Teams or Github Enterprise we can add push rules.
+https://github.blog/changelog/2024-09-10-push-rules-are-now-generally-available-and-updates-to-custom-properties/
+https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#push-rulesets
+"""
+Push rulesets are available for the GitHub Team plan in internal and private repositories, and forks of repositories that have push rulesets enabled.
+"""
+    a. Restricted file paths -> + Add file path -> .github/**/*
 
 ## Approach 2 : Commit Hooks
 
