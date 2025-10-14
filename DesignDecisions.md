@@ -68,11 +68,14 @@ Blocked_Patterns configuration file.
         b. Parallelize the text search of each file.
 3. CodeOwners, add .github/CODEOWNERS file and add this codeowner .github/ @[admin account] 
 4. If in Github Teams or Github Enterprise we can add push rules.
+
 https://github.blog/changelog/2024-09-10-push-rules-are-now-generally-available-and-updates-to-custom-properties/
+
 https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#push-rulesets
-"""
+
+```text
 Push rulesets are available for the GitHub Team plan in internal and private repositories, and forks of repositories that have push rulesets enabled.
-"""
+```
     a. Restricted file paths -> + Add file path -> .github/**/*
 
 ## Approach 2 : Commit Hooks
