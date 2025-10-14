@@ -1,106 +1,41 @@
-# WebHookTest
+# Stop Intrusive Commands
 
-Test out webhooks
+We want to protect our main branch or all protected branches such that no intrusive commands can be there.
+We do not want the opportunity that someone can commit something intrusive.
+We will have an admin level and developer level so admin can make changes.
 
-## What is a Webhook
+## Steps
 
-Webhook is a way to notify external services when certain events happen.
-When the criteria is met then Github will send a POST request to each of the URLs.
-Webhook operates after a push has happened.
+1. Make a Github ruleset
+    a. Target branches
+        i. All protected branches.
+    b. Branch rules.
+        i. Require a pull request before merging.
+            a. Required Approvals >= 1
+        ii. Require review from codeowners.
+    c. Require status checks to pass.
+        i. + Add checks -> search for the github actions created.
+    d. Block force pushes.
+2. Have a Github Actions which will scan the files and stop all Pattern matches from the 
+Blocked_Patterns configuration file.
+    i. Optimizations possible.
+        a. Only scan the files that are changed in the commit.
+        b. Parallelize the text search of each file.
+3. CodeOwners, add .github/CODEOWNERS file and add this codeowner .github/ @[admin account] 
+4. If in Github Teams or Github Enterprise we can add push rules.
 
-## Github Enterprise pre-receive hooks
+https://github.blog/changelog/2024-09-10-push-rules-are-now-generally-available-and-updates-to-custom-properties/
 
-pre-receive hook can run custom scripts to block pushes.
-This is a server side hook, only for Github enterprise.
-
-
-# Steps
-
-Github repo settings add webhook.
-Need a Payload URL which github will send a Post request to.
-Specify content type. Usually json.
-SSL verification, usually keep enabled.
-You need an event to trigger the webhook.
-
-# Delivery and Payload.
+https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#push-rulesets
 
 ```text
-Request URL: https://example.com/postreceive
-Request method: POST
-Accept: */*
-Content-Type: application/json
-User-Agent: GitHub-Hookshot/e90af57
-X-GitHub-Delivery: 31409bf6-9e2f-11f0-8421-40e73f9d1d42
-X-GitHub-Event: push
-X-GitHub-Hook-ID: 572647827
-X-GitHub-Hook-Installation-Target-ID: 1067356266
-X-GitHub-Hook-Installation-Target-Type: repository
+Push rulesets are available for the GitHub Team plan in internal and private repositories, and forks of repositories that have push rulesets enabled.
 ```
+    a. Restricted file paths -> + Add file path -> .github/**/*
 
-Payload has details of the event.
-The event has the sender information, user, commit, etc.
+## Tests
 
-## Github Action Workflow with Ruleset (Server Side)
-
-Github Actions Workflow can validate commits on the server-side and block the push based on results.
-Github actions with a protection rule to block merges when a commit has undesirable content.
-
-Make the yml in .github/workflows/ directory.
-The yml will tell github how to run it on their servers.
-
-The ruleset.
-Settings -> rules -> rulesets.
-Make a new ruleset, set the target branch.
-Enable restrict updates option.
-Require status checks to pass before merging.
-Add the validate commit messages job to the list of required status checks.
-This stops any pull request or direct push to the branch if the validation workflow fails.
-
-Push the .github/workflows and the workflow will show up on github actions tab.
-Make the ruleset and add the workflow action.
-It will be a Github Action and it will have the name of the commit.
-When it fails, you can check the result in the actions tab.
-
-
-## TODO
-
-Make a configuration file.
-Only admin can touch the configuration file.
-This will stop all bad commits.
-
-
-## Commit hooks (Client Side)
-
-These run on the developers local machine.
-Not mandatory, there is a flag to not run it.
-THe flag is git commit --no-verify
-
-These hooks are in the .git/hook/ directory.
-Make the script executmble with chmod +x .git/hooks/commit-msg.
-
-There are built in scripts that come when you initialize a git repository.
-Everything inside of .git is.
-All the hooks are suffixed with .sample.
-The file name is how git knows when to run the script, in what part of the lifecycle.
-The file should have no suffix.
-
-These files have #!/bin/sh which defines how to run the script.
-#!/bin/sh
-#!/usr/bin/env python.
-#!/usr/bin/perl
-
-# Test 
-
-intrusive
-
-Test Again
-
-3rd test.
-
-This is a test from the Test Branch
-we will be having a commit message with "intrusive"
-This should be blocked.
-
-Test this branch should trigger the workflows.
-
-Pushing to Main.
+-[x] Git push directly to main.
+-[x] Git commit and push directly on the Github UI.
+-[ ] Git commit to change files inside of .github directory.
+-[x] Git commit with malicious commands.

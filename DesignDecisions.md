@@ -81,10 +81,10 @@ Push rulesets are available for the GitHub Team plan in internal and private rep
 
 ### Tests
 
-1. Git push directly to main.
-2. Git commit and push directly on the Github UI.
-3. Git commit to change files inside of .github directory.
-4. Git commit with malicious commands.
+-[x] Git push directly to main.
+-[x] Git commit and push directly on the Github UI.
+-[ ] Git commit to change files inside of .github directory.
+-[x] Git commit with malicious commands.
 
 ## Approach 2 : Commit Hooks
 
