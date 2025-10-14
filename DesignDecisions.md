@@ -81,31 +81,10 @@ Push rulesets are available for the GitHub Team plan in internal and private rep
 
 ### Tests
 
-Git push directly to main.
-```text
-git push
-Enumerating objects: 10, done.
-Counting objects: 100% (10/10), done.
-Delta compression using up to 12 threads
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (6/6), 617 bytes | 308.00 KiB/s, done.
-Total 6 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
-remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
-remote: error: GH013: Repository rule violations found for refs/heads/main.
-remote: Review all repository rules at https://github.com/PrerakPatelCS/WebHookTest/rules?ref=refs%2Fheads%2Fmain
-remote:
-remote: - Required status check "Scan Code for Intrusive Commands" is expected.
-remote:
-remote: - Changes must be made through a pull request.
-remote:
-To https://github.com/PrerakPatelCS/WebHookTest.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'https://github.com/PrerakPatelCS/WebHookTest.git'
-```
-
-
- 
-
+1. Git push directly to main.
+2. Git commit and push directly on the Github UI.
+3. Git commit to change files inside of .github directory.
+4. Git commit with malicious commands.
 
 ## Approach 2 : Commit Hooks
 
