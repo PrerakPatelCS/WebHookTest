@@ -78,6 +78,14 @@ Push rulesets are available for the GitHub Team plan in internal and private rep
 ```
     a. Restricted file paths -> + Add file path -> .github/**/*
 
+
+### Tests
+
+1. Git push directly to main.
+2. Git commit and push directly on the Github UI.
+3. Git commit to change files inside of .github directory.
+4. Git commit with malicious commands.
+
 ## Approach 2 : Commit Hooks
 
 A pre-commit hook or a pre-receive hook.
@@ -88,6 +96,7 @@ This will run on any branch you are on.
 If you do.
 
 git commit --no-verify.
+
 
 you can bypass these hooks.
 Because it is bypassable this does not seem like the best solution.
