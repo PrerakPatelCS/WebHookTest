@@ -55,6 +55,7 @@ If you do.
 
 git commit --no-verify.
 
+
 you can bypass these hooks.
 Because it is bypassable this does not seem like the best solution.
 These scripts are also on the .git directory which is all git metadata.
