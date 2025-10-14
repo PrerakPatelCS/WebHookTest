@@ -1,5 +1,5 @@
 # Goal
-
+hi rm -rf
 We want to protect our main branch or all protected branches such that no intrusive commands can be there.
 We do not want the opportunity that someone can commit something intrusive.
 We will have an admin level and developer level so admin can make changes.
