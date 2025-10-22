@@ -28,6 +28,8 @@ https://github.blog/changelog/2024-09-10-push-rules-are-now-generally-available-
 
 https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#push-rulesets
 
+hi
+
 ```text
 Push rulesets are available for the GitHub Team plan in internal and private repositories, and forks of repositories that have push rulesets enabled.
 ```
