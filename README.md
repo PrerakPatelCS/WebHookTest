@@ -31,6 +31,8 @@ https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-
 ```text
 Push rulesets are available for the GitHub Team plan in internal and private repositories, and forks of repositories that have push rulesets enabled.
 ```
+
+
     a. Restricted file paths -> + Add file path -> .github/**/*
 
 ## Tests
@@ -39,3 +41,5 @@ Push rulesets are available for the GitHub Team plan in internal and private rep
 -[x] Git commit and push directly on the Github UI.
 -[ ] Git commit to change files inside of .github directory.
 -[x] Git commit with malicious commands.
+
+Hi hello
